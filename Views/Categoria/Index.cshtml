@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Categoria>
+@using MVC_AJAX.Controllers
+
+
+
+
+
+<h2 class="btn"><a href="/Categoria/Salvar" >Nova Categoria</a></h2>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th id="th">Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+    $.ajax({
+        type: "GET",
+        url:"@Url.Action("GetCategorias")",
+        data: {},
+        dataType: "json",
+        success: function (response) {
+
+            categoria = response.categoria;
+            console.log(categoria)
+
+            $.each(categoria, function (index, value) {
+
+                var btnEditar = $('<a class="btnEditar" title="Editar" >Editar<a />').attr("href", `/Categoria/Editar/${value.id}`)
+                var btnDeletar = $('<a class="btnDeletar" title="Deletar" >Deletar<a />').attr("href", `/Categoria/Deletar/${value.id}`)
+
+                btnEditar = $('<td>').append(btnEditar)
+                btnDeletar = $('<td>').append(btnDeletar)
+
+                var td = $('<td>').text(value.nome)
+
+
+                $('tbody').append($
+                    (
+                        $('<tr>').append(td).append(btnEditar).append(btnDeletar)
+
+                    )
+                )
+
+            });
+
+        },
+        error: function (req, status, error) {
+            console.log(error);
+        }
+        });
+    });
+
+</script>

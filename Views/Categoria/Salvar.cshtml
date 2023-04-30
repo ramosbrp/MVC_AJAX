@@ -1,0 +1,50 @@
+﻿
+<h2>Category Form</h2>
+
+<form name="formCategoria" class="form horizontal"   method="Post">
+
+    <input type="hidden" class="form-control">
+    <div class="form-group">
+        <label for="Name" class="col-md-1 control-label">Nome</label>
+
+        <div class="col-md-2">
+            <input type="text" class="form-control" id="categoriaNome" >
+        </div>
+    </div>
+
+    <div class="for-group">
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success" Id="Salvar" >Save</button>
+        </div>
+    </div>
+</form>
+
+@*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#Salvar").click(function () {
+            $.ajax({
+        type: "POST",
+                url: "@Url.Action("PostCategorias")",
+                data: {
+                    modelo: {
+                        id: 0,
+                        Nome: $('#categoriaNome').val()
+                    }
+                },
+        dataType: "json",
+        success: function (response) {
+            console.log(response.message)
+        },
+        error: function (req, status, error) {
+            console.log(error);
+        }
+        });
+
+        });
+
+    });
+
+</script>*@
